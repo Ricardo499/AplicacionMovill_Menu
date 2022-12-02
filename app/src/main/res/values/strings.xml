@@ -280,8 +280,8 @@
         <item>Zimbabue</item>
     </string-array>
 
-    <string name="title_activity_main">Menu</string>
-    <string name="nav_header_title">menu</string>
+    <string name="title_activity_main">Nasa Juvenil</string>
+    <string name="nav_header_title">Nasa para juniors</string>
     <string name="nav_header_subtitle"></string>
     <string name="action_settings">Settings</string>
 

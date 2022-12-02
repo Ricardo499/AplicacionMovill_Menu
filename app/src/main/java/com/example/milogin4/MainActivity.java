@@ -41,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
 
+        if(revisarSesion()){
+            preferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            editor = preferences.edit();
+            String correo = preferences.getString("correo","");
+            String contraseña = preferences.getString("contraseña","");
+            login(correo, contraseña);
+
+        }
+
         Correo = findViewById(R.id.correo);
         Contraseña = findViewById(R.id.contraseña);
         Registro = findViewById(R.id.registro);
@@ -50,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         //shared
         preferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         editor = preferences.edit();
+
+
        /* RadioButtonActivate = Recordar.isChecked();
         Recordar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,16 +99,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void guardarSesion(String usuario, String correo,String contraseña, String fecha, String pais, String nivel) {
-        editor.putBoolean("sesion", true);
-        editor.putString("usuario", usuario);
-        editor.putString("correo", correo);
-        editor.putString("contraseña", contraseña);
-        editor.putString("fecha", fecha);
-        editor.putString("pais", pais);
-        editor.putString("nivel", nivel);
+    private void guardarSesion(String usuario, String correo, String contraseña, String fecha, String pais, String nivel) {
+        preferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        boolean sesion1;
 
-        editor.apply();
+        if (Recordar.isChecked()) {
+            sesion1 = true;
+            editor.putBoolean("sesion", sesion1);
+            editor.commit();
+        } else {
+            sesion1 = false;
+        }
+
+         editor.putString("usuario", usuario);
+         editor.putString("correo", correo);
+         editor.putString("contraseña", contraseña);
+         editor.putString("fecha", fecha);
+         editor.putString("pais", pais);
+         editor.putString("nivel", nivel);
+
+          editor.apply();
+
     }
 
 
@@ -113,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
                     String value = jsonObject.getString("value");
                     if (value.equals("TRUE")) {
 
-                        String mensaje = jsonObject.getString("mensaje");
-                        String id_usuario = jsonObject.getString("id_usuario");
+                        //String mensaje = jsonObject.getString("mensaje");
+                        //String id_usuario = jsonObject.getString("id_usuario");
                         String usuario = jsonObject.getString("usuario");
                         String correo = jsonObject.getString("correo");
                         String contraseña = jsonObject.getString("contraseña");
@@ -122,11 +145,25 @@ public class MainActivity extends AppCompatActivity {
                         String pais = jsonObject.getString("pais");
                         String nivel = jsonObject.getString("nivel");
 
-
+                 /*       SharedPreferences sharedPreferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         //shared
+
+                        editor.putString("usuario", usuario);
+                        editor.putString("correo", correo);
+                        editor.putString("fecha", fecha);
+                        editor.putString("pais", pais);
+                        editor.putString("nivel", nivel);
+
+                        editor.apply();
+
+                        guardarSesion(usuario, correo, fecha, pais, nivel);
+                        startActivity(new Intent(MainActivity.this, menu_slide.class));
+                        System.out.println("_____________________________________");
+                        System.out.println(sharedPreferences.getAll());
+                        System.out.println("________________________________________");*/
                         guardarSesion(usuario, correo, contraseña, fecha, pais, nivel);
                         startActivity(new Intent(MainActivity.this, menu_slide.class));
-
                     } else {
                         String mensaje = jsonObject.getString("mensaje");
                         Toast toast = Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT);
@@ -152,6 +189,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(MainActivity.this).add(postResquest);
+    }
+    private boolean revisarSesion() {
+        SharedPreferences sharedPreferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        boolean ssn = sharedPreferences.getBoolean("sesion", false);
+        return ssn;
     }
 }
 

@@ -59,10 +59,10 @@ public class GalleryFragment extends Fragment {
 
                     markerOptions.position(lng);
                     markerOptions.icon(bitmapDescriptor);
-                    markerOptions.title("mi ubicación!");
+                    markerOptions.title("Empresa Nasa Juvenil");
 
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                            lng, 15
+                            lng, 18
                     ));
 
                     googleMap.addMarker(markerOptions);

@@ -52,8 +52,8 @@ public class HomeFragment extends Fragment {
                     NotificationManager manager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                     manager.createNotificationChannel(channel);
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
-                            .setSmallIcon(R.drawable.robot)
-                            .setContentTitle("Bienvenidos a nuestra aplicacion")
+                            .setSmallIcon(R.drawable.nasa)
+                            .setContentTitle("Bienvenidos a Nasa para juveniles")
                             .setContentText("Puede explorar todo el contenido de nuestra aplicación)")
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                     //.setSound(soundUri);
