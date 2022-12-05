@@ -309,4 +309,11 @@
     <string name="texto_nortificacion">Selecciona la imagen para enviar la nortificación de bienvenida</string>
 
 
+    <string name="imagen">Haz click para eligir alguna imagen de perfil</string>
+    <string name="texto_usuario">Usuario:</string>
+    <string name="texto_correo">Correo:</string>
+    <string name="texto_Fecha_Nacimiento">Fecha de Nacimiento:</string>
+    <string name="texto_Nacionalidad">Nacionalidad:</string>
+    <string name="texto_Tipo">Tipo:</string>
+
 </resources>

@@ -107,13 +107,7 @@ public class Registro extends AppCompatActivity {
                 }
             }
         });
-        /*
-        Cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Registro.this, MainActivity.class));
-            }
-        });*/
+
     }
 
     //Sedimentación
